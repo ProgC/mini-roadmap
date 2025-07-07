@@ -1,5 +1,5 @@
 Mini-Roadmap Web App
-A roadmap web application inspired by ProductBoard, built with a Node.js (Express) backend and a static-file-based frontend.
+A roadmap web application inspired by Unreal Engine's road map web service, built with a Node.js (Express) backend and a static-file-based frontend.
 
 🚀 Key Features
 
