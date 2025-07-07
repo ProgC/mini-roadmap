@@ -1,6 +1,6 @@
 Mini-Roadmap Web App
-
 A roadmap web application inspired by ProductBoard, built with a Node.js (Express) backend and a static-file-based frontend.
+
 🚀 Key Features
 1. Roadmap Card System
 - Card-based content display: Shows title, description, status, category, priority, and progress
