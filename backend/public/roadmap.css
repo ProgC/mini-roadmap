@@ -1,0 +1,35 @@
+.history-list {
+  background: #f8f8fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.7rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.history-item {
+  padding: 0.4em 0.2em 0.4em 0.5em;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 0.98em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7em;
+}
+.history-item:last-child {
+  border-bottom: none;
+}
+.history-item .btn-restore {
+  font-size: 0.95em;
+  padding: 0.2em 0.7em;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background: #fff;
+  cursor: pointer;
+  margin-left: 0.7em;
+  transition: background 0.15s;
+}
+.history-item .btn-restore:hover {
+  background: #e6f0ff;
+  border-color: #7abaff;
+} 

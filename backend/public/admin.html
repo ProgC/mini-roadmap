@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Admin - TNT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Roadmap Admin</h1>
+                <p class="subtitle">TNT</p>
+                <a href="/" class="admin-link">View Roadmap</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="admin-panel">
+                <div class="admin-section">
+                    <h2>Add New Content</h2>
+                    <form id="add-item-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="title">Title *</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description *</label>
+                            <textarea id="description" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="thumbnail">Thumbnail Image</label>
+                            <input type="file" id="thumbnail" name="thumbnail" accept="image/*">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="status">Status *</label>
+                                <select id="status" name="status" required>
+                                    <option value="">Select status</option>
+                                    <option value="Planning">Planning</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select category</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="priority">Priority *</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="">Select priority</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="progress">Progress (%)</label>
+                                <input type="number" id="progress" name="progress" min="0" max="100" value="0">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Content</button>
+                    </form>
+                </div>
+
+                <div class="admin-section">
+                    <h2>Manage Categories</h2>
+                    <form id="add-category-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="new-category">Category Name</label>
+                            <input type="text" id="new-category" name="category" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Add Category</button>
+                    </form>
+                    <ul id="category-list" class="category-list"></ul>
+                </div>
+
+                <div class="admin-section">
+                    <h2>Manage Tags</h2>
+                    <form id="add-tag-form" class="admin-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="new-tag-name">Tag Name</label>
+                            <input type="text" id="new-tag-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-tag-icon">Icon (emoji) - Optional if image is provided</label>
+                            <input type="text" id="new-tag-icon" name="icon" placeholder="🔥">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-tag-image">Tag Image - Optional if icon is provided</label>
+                            <input type="file" id="new-tag-image" name="image" accept="image/*">
+                            <div id="tag-image-preview" style="display:none; margin-top:0.5rem;">
+                                <img src="" alt="Preview" style="max-width:100px; max-height:100px; border-radius:4px;" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-tag-color">Color</label>
+                            <input type="color" id="new-tag-color" name="color" value="#666666">
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Add Tag</button>
+                    </form>
+                    <div id="tags-list" class="tags-list"></div>
+                </div>
+
+                <div class="admin-section">
+                    <h2>Manage Existing Content</h2>
+                    <div class="items-list" id="items-list">
+                        <!-- 동적으로 로드됨 -->
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h2>Content History</h2>
+                    <div id="history-container" class="history-container">
+                        <!-- 이력 리스트가 여기에 표시됨 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 수정 모달 -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Content</h2>
+            <form id="edit-item-form" class="admin-form">
+                <input type="hidden" id="edit-id" name="id">
+                                        <div class="form-group">
+                            <label for="edit-title">Title *</label>
+                            <input type="text" id="edit-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-description">Description *</label>
+                            <textarea id="edit-description" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-thumbnail">Thumbnail Image</label>
+                            <input type="file" id="edit-thumbnail" name="thumbnail" accept="image/*">
+                        </div>
+                <div class="form-section">
+                    <img id="edit-thumbnail-preview" src="" alt="" style="max-width:120px; display:none; margin-bottom:10px;" />
+                </div>
+                                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-status">Status *</label>
+                                <select id="edit-status" name="status" required>
+                                    <option value="Planning">Planning</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-category">Category *</label>
+                                <select id="edit-category" name="category" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-priority">Priority *</label>
+                                <select id="edit-priority" name="priority" required>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-progress">Progress (%)</label>
+                                <input type="number" id="edit-progress" name="progress" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-danger" id="delete-btn">Delete</button>
+                        </div>
+                        <div class="form-section">
+                            <h4>Tags</h4>
+                            <div id="item-tags" class="item-tags"></div>
+                            <div class="tag-selector">
+                                <select id="tag-selector">
+                                    <option value="">Select a tag to add...</option>
+                                </select>
+                                <button type="button" class="btn btn-small" id="add-tag-btn">Add Tag</button>
+                            </div>
+                        </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

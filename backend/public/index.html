@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engine - Mini-Roadmap</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Engine</h1>
+                <p class="subtitle">Mini-Roadmap</p>
+                <a href="/admin" class="admin-link">Admin Panel</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="filters" style="align-items: flex-end;">
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priority-filter">Priority:</label>
+                    <select id="priority-filter">
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="filter-group" style="margin-left:auto; min-width:120px;">
+                    <label for="grid-cols-select">Grid Columns:</label>
+                    <select id="grid-cols-select">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="roadmap-container">
+                <div class="items-grid" id="items-grid">
+                    <!-- 동적으로 로드됨 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="roadmap.js"></script>
+</body>
+</html> 
